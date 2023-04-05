@@ -1,7 +1,7 @@
 <table class="table">
   <thead>
     <tr>
-      <mat-checkbox></mat-checkbox>
+      <mat-checkbox [checked]="allSelected" (change)="selectAll($event.checked)"></mat-checkbox>
       <th>Name</th>
       <th>Email</th>
       <th>Role</th>
@@ -10,7 +10,7 @@
   </thead>
   <tbody class="table-body">
     <tr *ngFor="let item of employeeData | searchFilter: searchText; let i = index">
-      <mat-checkbox class="table-data"></mat-checkbox>
+      <mat-checkbox class="table-data" [(ngModel)]="item.isSelected"></mat-checkbox>
       <td class="table-data">{{ item.name }}</td>
       <td class="table-data">{{ item.email }}</td>
       <td class="table-data">{{ item.role }}</td>
