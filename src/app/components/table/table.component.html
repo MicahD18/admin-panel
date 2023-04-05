@@ -9,14 +9,14 @@
     </tr>
   </thead>
   <tbody class="table-body">
-    <tr *ngFor="let item of employeeData">
+    <tr *ngFor="let item of employeeData | searchFilter: searchText; let i = index">
       <mat-checkbox class="table-data"></mat-checkbox>
       <td class="table-data">{{ item.name }}</td>
       <td class="table-data">{{ item.email }}</td>
       <td class="table-data">{{ item.role }}</td>
       <td class="table-data">
-        <img src="../../../assets/edit-icon.svg" alt="edit" class="icon">
-        <img src="../../../assets/delete-icon.svg" alt="delete" class="icon" id="delete">
+        <button><img src="../../../assets/edit-icon.svg" alt="edit" class="icon"></button>
+        <button (click)="deleteUser(i)"><img src="../../../assets/delete-icon.svg" alt="delete" class="icon" id="delete"></button>
       </td>
     </tr>
   </tbody>

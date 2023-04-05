@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   // takes 2 inputs - an array and the search text to filter the array with
-  transform(items: any[], searchText: string): any[] {
+  transform(items: any[] | undefined, searchText: string): any[] {
     if (!items) {
       return [];
     }
@@ -16,8 +16,8 @@ export class FilterPipe implements PipeTransform {
     }
     searchText = searchText.toLocaleLowerCase();
 
-    return items.filter(it => {
-      return it.toLocaleLowerCase().includes(searchText);
+    return items.filter(item => {
+      return item.name.toLocaleLowerCase().includes(searchText)
     });
   }
 

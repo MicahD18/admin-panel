@@ -7,6 +7,11 @@
     text-align: center;
 }
 
+.table-data button {
+    background-color: transparent;
+    border: none;
+}
+
 .icon {
     width: 25px;
     height: 25px;
