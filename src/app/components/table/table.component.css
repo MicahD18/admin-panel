@@ -1,3 +1,19 @@
 .table {
-    width: 75vw;
+    width: 100vw;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.icon:hover {
+    filter: brightness(0) saturate(100%) invert(71%) sepia(2%) saturate(0%) hue-rotate(27deg) brightness(90%) contrast(84%);
+}
+
+#delete {
+    filter: brightness(0) saturate(100%) invert(61%) sepia(29%) saturate(5955%) hue-rotate(324deg) brightness(95%) contrast(112%);
+}
+#delete:hover {
+    filter: brightness(0) saturate(100%) invert(37%) sepia(7%) saturate(4626%) hue-rotate(314deg) brightness(96%) contrast(108%);
 }

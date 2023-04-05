@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './components/table/table.component';
 import { DeleteSelectedComponent } from './components/delete-selected/delete-selected.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ListItemComponent,
     TableComponent,
     DeleteSelectedComponent,
-    PaginationComponent
+    PaginationComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     MatTableModule,
     MatFormFieldModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
