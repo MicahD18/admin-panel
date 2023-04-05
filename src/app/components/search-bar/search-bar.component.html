@@ -1,1 +1,13 @@
-<input matInput placeholder="Search by name, email or role" type="text" class="searchbar">
+<div class="app-container-center">
+  <input
+    matInput
+    placeholder="Search by name, email or role"
+    type="text"
+    class="searchbar"
+    [(ngModel)]="searchText"
+  />
+</div>
+
+<div class="app-container-center">
+  <app-table [employeeData]="employeeData"></app-table>
+</div>

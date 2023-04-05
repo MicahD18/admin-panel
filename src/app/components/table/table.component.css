@@ -1,5 +1,10 @@
 .table {
-    width: 100vw;
+    width: 90vw;
+    margin-top: 25px;
+}
+
+.table-data {
+    text-align: center;
 }
 
 .icon {
