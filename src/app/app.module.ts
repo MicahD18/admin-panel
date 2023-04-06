@@ -13,7 +13,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './components/table/table.component';
-import { DeleteSelectedComponent } from './components/delete-selected/delete-selected.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { FilterPipe } from './pipes/filter.pipe';
 
@@ -23,7 +22,6 @@ import { FilterPipe } from './pipes/filter.pipe';
     SearchBarComponent,
     ListItemComponent,
     TableComponent,
-    DeleteSelectedComponent,
     PaginationComponent,
     FilterPipe
   ],

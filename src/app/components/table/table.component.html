@@ -1,3 +1,5 @@
+<button (click)="test()">test btn</button>
+
 <table class="table">
   <thead>
     <tr>
@@ -10,7 +12,7 @@
   </thead>
   <tbody class="table-body">
     <tr *ngFor="let item of employeeData | searchFilter: searchText; let i = index">
-      <mat-checkbox class="table-data" [(ngModel)]="item.isSelected"></mat-checkbox>
+      <mat-checkbox class="table-data" [(ngModel)]="item.isSelected" (change)="selectUser(i)"></mat-checkbox>
       <td class="table-data">{{ item.name }}</td>
       <td class="table-data">{{ item.email }}</td>
       <td class="table-data">{{ item.role }}</td>
@@ -21,3 +23,10 @@
     </tr>
   </tbody>
 </table>
+
+<div class="app-container-even">
+  <button mat-raised-button color="warn" *ngIf="selected == true">Delete Selected</button>
+  <app-pagination></app-pagination>
+  <div></div>
+  <div></div>
+</div>
