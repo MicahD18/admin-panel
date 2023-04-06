@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatListModule} from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './components/table/table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     ListItemComponent,
     TableComponent,
     PaginationComponent,
-    FilterPipe
+    FilterPipe,
+    BottomSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     MatButtonModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

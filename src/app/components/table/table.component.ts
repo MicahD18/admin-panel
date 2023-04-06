@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EmployeeData } from '../search-bar/search-bar.component';
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -13,8 +15,9 @@ export class TableComponent implements OnInit {
 
   // check if any boxes are selected
   selected: boolean = false;
+  editing: boolean = false;
 
-  constructor() {}
+  constructor(private _bottomSheet: MatBottomSheet) {}
 
   ngOnInit(): void {}
 
@@ -22,17 +25,8 @@ export class TableComponent implements OnInit {
   dataSource: any = this.employeeData;
 
   deleteUser(index: number) {
-    this.employeeData?.map((item: any) => {
-      
-      if (index === item.position) {
-        this.employeeData?.splice(index, 1);
-        console.log(this.employeeData);
-      }
-
-      if (index === 0) {
-        this.employeeData?.pop();
-      }
-    });
+    this.employeeData?.splice(index, 1);
+    console.log(this.employeeData);
   }
 
   selectAll(selected: boolean) {
@@ -61,13 +55,25 @@ export class TableComponent implements OnInit {
     }
   }
 
-  // TODO: filter items that are false
+  // filters items that are false
   deleteSelectedUsers() {
-    const filteredArray = this.employeeData.filter((item:any) => {
+    const filteredArray = this.employeeData.filter((item: any) => {
       return item.isSelected !== true;
     });
     // set data to the filtered array
     this.employeeData = filteredArray;
     this.selected = false;
+  }
+
+  editUser(index: number) {
+    this.employeeData[index].isEditing = true;
+    this.editing = true;
+    console.log(this.employeeData[index]);
+    
+    this.openBottomSheet(index);
+  }
+
+  openBottomSheet(index: number): void {
+    this._bottomSheet.open(BottomSheetComponent, { data: this.employeeData[index] });
   }
 }
