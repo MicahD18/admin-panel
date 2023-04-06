@@ -1,25 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { Injectable } from '@angular/core';
+import { UserData } from '../components/search-bar/search-bar.component';
 
-export interface UserData {
-  position: number;
-  name: string;
-  email: string;
-  role: string;
-  isSelected: boolean;
-  isEditing: boolean;
-}
-@Component({
-  selector: 'app-search-bar',
-  templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class SearchBarComponent implements OnInit {
+export class UserService {
 
-  searchText: string = "";
-
-  // TODO: Create a new array of objects with data from API endpoint
-  employeeData: UserData[] = [
+  // SAMPLE DATA
+  userData: UserData[] = [
     {position: 1, name: 'Aaron Miles', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false },
     {position: 2, name: 'Sarah Potter', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
     {position: 3, name: 'Jim McClain', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
@@ -32,11 +20,7 @@ export class SearchBarComponent implements OnInit {
     {position: 10, name: 'Michael Vars', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
   ];
 
-  // TODO: Add API Service here
-  constructor(public userService: UserService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    // TODO: Call the function that sends an HTTP request to the API endpoint
-  }
-
+  // TODO: Send HTTP request to API endpoint
 }

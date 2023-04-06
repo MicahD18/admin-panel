@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EmployeeData } from '../search-bar/search-bar.component';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { UserData } from '../search-bar/search-bar.component';
+import {MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 @Component({
   selector: 'app-table',
@@ -8,7 +8,7 @@ import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  @Input() employeeData!: EmployeeData[];
+  @Input() userData!: UserData[];
   @Input() searchText!: string;
 
   allSelected: boolean = false;
@@ -22,20 +22,20 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {}
 
   displayedColumns: string[] = ['name'];
-  dataSource: any = this.employeeData;
+  dataSource: any = this.userData;
 
   deleteUser(index: number) {
-    this.employeeData?.splice(index, 1);
-    console.log(this.employeeData);
+    this.userData?.splice(index, 1);
+    console.log(this.userData);
   }
 
   selectAll(selected: boolean) {
     this.allSelected = selected;
 
-    if (this.employeeData == null) {
+    if (this.userData == null) {
       return;
     }
-    this.employeeData.forEach((item: any) => {
+    this.userData.forEach((item: any) => {
       // set all isSelected properties to true
       item.isSelected = selected;
     });
@@ -44,8 +44,8 @@ export class TableComponent implements OnInit {
   }
 
   selectUser() {
-    for (let i = 0; i < this.employeeData.length; i++) {
-      if (this.employeeData[i].isSelected) {
+    for (let i = 0; i < this.userData.length; i++) {
+      if (this.userData[i].isSelected) {
         this.selected = true;
         // break out of loop if isSelected property in the object is true
         break;
@@ -57,22 +57,22 @@ export class TableComponent implements OnInit {
 
   // filters items that are false
   deleteSelectedUsers() {
-    const filteredArray = this.employeeData.filter((item: any) => {
+    const filteredArray = this.userData.filter((item: any) => {
       return item.isSelected !== true;
     });
     // set data to the filtered array
-    this.employeeData = filteredArray;
+    this.userData = filteredArray;
     this.selected = false;
   }
 
   editUser(index: number) {
-    this.employeeData[index].isEditing = true;
+    this.userData[index].isEditing = true;
     this.editing = true;
     
     this.openBottomSheet(index);
   }
 
   openBottomSheet(index: number): void {
-    this._bottomSheet.open(BottomSheetComponent, { data: this.employeeData[index] });
+    this._bottomSheet.open(BottomSheetComponent, { data: this.userData[index] });
   }
 }
