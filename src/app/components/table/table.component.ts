@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserData } from '../search-bar/search-bar.component';
 import {MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
+import { UserData } from 'src/app/services/user.service';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',

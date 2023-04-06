@@ -1,25 +1,25 @@
 <form class="user-form">
     <mat-form-field class="example-full-width">
       <mat-label>Enter name</mat-label>
-      <input matInput value="{{data.name}}">
+      <input matInput value="{{data.name}}" [(ngModel)]="name" name="name">
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width" >
         <mat-label>Enter email</mat-label>
-        <input matInput value="{{data.email}}">
+        <input matInput value="{{data.email}}" [(ngModel)]="email" name="email">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="role">
         <mat-label>Role</mat-label>
         <mat-select>
-          <mat-option *ngFor="let role of roles" [value]="role">
+          <mat-option *ngFor="let role of roles" [value]="role" (click)="selectRole(role)">
             {{role}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <div class="save-btn-container">
-        <button mat-raised-button (click)="saveChanges()" class="save-btn" color="accent">Save</button>
+        <button mat-raised-button (click)="updateUser()" class="save-btn" color="accent">Save</button>
       </div>
       
   </form>
