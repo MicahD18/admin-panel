@@ -1,10 +1,11 @@
-<div class="app-container-center">
+<div class="app-container-even">
   <input
     placeholder="Search by name"
     type="text"
     class="searchbar"
     [(ngModel)]="searchText"
   />
+  <button mat-raised-button (click)="openBottomSheet()" color="accent" id="create-btn">Create User</button>
 </div>
 
 <div class="app-container-center">

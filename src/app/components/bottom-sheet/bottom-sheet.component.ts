@@ -5,8 +5,6 @@ import {
 } from '@angular/material/bottom-sheet';
 import { TableComponent } from '../table/table.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { UserService } from 'src/app/services/user.service';
-
 @Component({
   selector: 'app-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
@@ -19,7 +17,6 @@ export class BottomSheetComponent implements OnInit {
       SearchBarComponent
     >,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
-    private userService: UserService
   ) {}
 
   name!: string;
@@ -30,8 +27,13 @@ export class BottomSheetComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data);
     // set name and email to data passed in
-    this.name = this.data.name;
-    this.email = this.data.email;
+    this.name = this.data?.name;
+    this.email = this.data?.email;
+    
+    // if no data, then return to silence errors
+    if (this.data == null) {
+      return;
+    }
   }
 
   selectRole(role: string) {
@@ -43,7 +45,7 @@ export class BottomSheetComponent implements OnInit {
   updateUser() {
     this.data.name = this.name;
     this.data.email = this.email;
-    // this.data.role = this.newRole;
+    this.data.role = this.newRole;
 
     console.log(this.newRole);
     
@@ -51,7 +53,10 @@ export class BottomSheetComponent implements OnInit {
       this.data.role = this.data.role;
     }
 
-    // this.userService.updateUserData(this.name, this.email, this.newRole);
     this._bottomSheetRef.dismiss();
+  }
+
+  createUser() {
+    
   }
 }

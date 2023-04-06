@@ -28,11 +28,6 @@ export class UserService {
     {id: 9, name: 'Michael Vars', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
   ];
 
-  updateUserData(name: string, email: string, role: string) {
-    console.log(name, email, role);
-    
-  }
-
   constructor() { }
 
   // TODO: Send HTTP request to API endpoint
