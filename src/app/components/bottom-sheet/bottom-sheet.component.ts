@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { TableComponent } from '../table/table.component';
 
 @Component({
@@ -9,9 +9,10 @@ import { TableComponent } from '../table/table.component';
 })
 export class BottomSheetComponent implements OnInit {
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<TableComponent>) { }
+  constructor(private _bottomSheetRef: MatBottomSheetRef<TableComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
   saveChanges() {

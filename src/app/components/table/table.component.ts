@@ -68,7 +68,6 @@ export class TableComponent implements OnInit {
   editUser(index: number) {
     this.employeeData[index].isEditing = true;
     this.editing = true;
-    console.log(this.employeeData[index]);
     
     this.openBottomSheet(index);
   }
