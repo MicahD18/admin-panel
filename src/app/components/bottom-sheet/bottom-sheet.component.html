@@ -1,2 +1,21 @@
-<p>{{data.name}}</p>
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Enter name</mat-label>
+      <input matInput value="{{data.name}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Enter email</mat-label>
+        <input matInput value="{{data.email}}">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let role of roles" [value]="role">
+            {{role}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </form>
 <button mat-raised-button (click)="saveChanges()">Save</button>

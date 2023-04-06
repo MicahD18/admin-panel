@@ -1,6 +1,5 @@
 <div class="app-container-center">
   <input
-    matInput
     placeholder="Search by name"
     type="text"
     class="searchbar"
@@ -9,5 +8,8 @@
 </div>
 
 <div class="app-container-center">
-  <app-table [employeeData]="employeeData" [searchText]="searchText"></app-table>
+  <app-table
+    [employeeData]="employeeData"
+    [searchText]="searchText"
+  ></app-table>
 </div>

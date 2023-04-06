@@ -11,6 +11,8 @@ export class BottomSheetComponent implements OnInit {
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<TableComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
 
+  roles: string[] = ["Member", "Admin"];
+
   ngOnInit(): void {
     console.log(this.data);
   }
