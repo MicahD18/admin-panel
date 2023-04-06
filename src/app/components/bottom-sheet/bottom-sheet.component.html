@@ -1,4 +1,4 @@
-<form class="example-form">
+<form class="user-form">
     <mat-form-field class="example-full-width">
       <mat-label>Enter name</mat-label>
       <input matInput value="{{data.name}}">
@@ -17,5 +17,10 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+      <div class="save-btn-container">
+        <button mat-raised-button (click)="saveChanges()" class="save-btn" color="accent">Save</button>
+      </div>
+      
   </form>
-<button mat-raised-button (click)="saveChanges()">Save</button>
+
