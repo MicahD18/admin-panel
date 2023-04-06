@@ -5,6 +5,7 @@ import {
 } from '@angular/material/bottom-sheet';
 import { TableComponent } from '../table/table.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
@@ -17,19 +18,20 @@ export class BottomSheetComponent implements OnInit {
       SearchBarComponent
     >,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
+    private userService: UserService
   ) {}
 
   name!: string;
   email!: string;
   roles: string[] = ['Member', 'Admin'];
-  newRole?: string;
+  newRole!: string;
 
   ngOnInit(): void {
-    console.log(this.data);
     // set name and email to data passed in
     this.name = this.data?.name;
     this.email = this.data?.email;
-    
+    this.newRole = this.data?.role;
+
     // if no data, then return to silence errors
     if (this.data == null) {
       return;
@@ -39,7 +41,6 @@ export class BottomSheetComponent implements OnInit {
   selectRole(role: string) {
     // set the newRole property to the role selected
     this.newRole = role;
-    console.log(this.newRole);
   }
 
   updateUser() {
@@ -47,16 +48,21 @@ export class BottomSheetComponent implements OnInit {
     this.data.email = this.email;
     this.data.role = this.newRole;
 
-    console.log(this.newRole);
-    
-    if (this.newRole === undefined) {
-      this.data.role = this.data.role;
-    }
-
     this._bottomSheetRef.dismiss();
   }
 
   createUser() {
-    
+    console.log(this.name, this.email, this.newRole);
+
+    this.userService.userData.push({
+      id: this.userService.userData.length + 1,
+      name: this.name,
+      email: this.email,
+      role: this.newRole,
+      isSelected: false,
+      isEditing: false,
+    });
+
+    this._bottomSheetRef.dismiss();
   }
 }
