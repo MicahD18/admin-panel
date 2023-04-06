@@ -43,9 +43,11 @@ export class TableComponent implements OnInit {
       // set all isSelected properties to true
       item.isSelected = selected;
     });
+
+    this.selectUser();
   }
 
-  selectUser(index: number) {
+  selectUser() {
     for (let i = 0; i < this.employeeData.length; i++) {
       if (this.employeeData[i].isSelected) {
         this.selected = true;
