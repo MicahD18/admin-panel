@@ -17,9 +17,26 @@ export class TableComponent implements OnInit {
   selected: boolean = false;
   editing: boolean = false;
 
+  itemsPerPage: number = 5;
+
   constructor(private _bottomSheet: MatBottomSheet) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
+
+    console.log(totalPages);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const startIndex = (i - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      
+      const currentPageData = this.userData.slice(startIndex, endIndex);
+
+      console.log(currentPageData);
+      
+    }
+  }
 
   displayedColumns: string[] = ['name'];
   dataSource: any = this.userData;
@@ -74,5 +91,13 @@ export class TableComponent implements OnInit {
 
   openBottomSheet(index: number): void {
     this._bottomSheet.open(BottomSheetComponent, { data: this.userData[index] });
+  }
+
+  prev() {
+
+  }
+
+  next() {
+
   }
 }
