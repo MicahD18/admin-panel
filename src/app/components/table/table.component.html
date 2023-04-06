@@ -1,5 +1,3 @@
-<button (click)="test()">test btn</button>
-
 <table class="table">
   <thead>
     <tr>
@@ -25,7 +23,7 @@
 </table>
 
 <div class="app-container-even">
-  <button mat-raised-button color="warn" *ngIf="selected == true">Delete Selected</button>
+  <button mat-raised-button color="warn" *ngIf="selected == true" (click)="deleteSelectedUsers()">Delete Selected</button>
   <app-pagination></app-pagination>
   <div></div>
   <div></div>

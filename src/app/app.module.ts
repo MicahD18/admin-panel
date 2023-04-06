@@ -6,6 +6,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +35,9 @@ import { FilterPipe } from './pipes/filter.pipe';
     MatFormFieldModule,
     FormsModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatBottomSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

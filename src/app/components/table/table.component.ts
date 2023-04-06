@@ -18,17 +18,19 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  test() {
-    console.log(this.employeeData);
-  }
-
   displayedColumns: string[] = ['name'];
   dataSource: any = this.employeeData;
 
   deleteUser(index: number) {
     this.employeeData?.map((item: any) => {
+      
       if (index === item.position) {
         this.employeeData?.splice(index, 1);
+        console.log(this.employeeData);
+      }
+
+      if (index === 0) {
+        this.employeeData?.pop();
       }
     });
   }
@@ -60,5 +62,12 @@ export class TableComponent implements OnInit {
   }
 
   // TODO: filter items that are false
-  deleteSelectedUsers() {}
+  deleteSelectedUsers() {
+    const filteredArray = this.employeeData.filter((item:any) => {
+      return item.isSelected !== true;
+    });
+    // set data to the filtered array
+    this.employeeData = filteredArray;
+    this.selected = false;
+  }
 }
