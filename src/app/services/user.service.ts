@@ -26,6 +26,22 @@ export class UserService {
     {id: 7, name: 'Morgan Pritchard', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
     {id: 8, name: 'Bryce TerHaar', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
     {id: 9, name: 'Michael Vars', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 10, name: 'Jeremy Skrdlant', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
+    {id: 11, name: 'Micah Daise', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 12, name: 'Morgan Pritchard', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 13, name: 'Bryce TerHaar', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
+    {id: 14, name: 'Michael Vars', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 15, name: 'Jeremy Skrdlant', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
+    {id: 16, name: 'Micah Daise', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 17, name: 'Morgan Pritchard', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 18, name: 'Bryce TerHaar', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
+    {id: 19, name: 'Michael Vars', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 20, name: 'Bryce TerHaar', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
+    {id: 21, name: 'Michael Vars', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 22, name: 'Jeremy Skrdlant', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
+    {id: 23, name: 'Micah Daise', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 24, name: 'Morgan Pritchard', email: "sample@gmail.com", role: 'Member', isSelected: false, isEditing: false},
+    {id: 25, name: 'Bryce TerHaar', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
   ];
 
   constructor() { }

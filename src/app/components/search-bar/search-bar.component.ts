@@ -16,6 +16,8 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit(): void {
     // TODO: Call the function that sends an HTTP request to the API endpoint
+    console.log(this.userService.userData);
+    
   }
 
   openBottomSheet(): void {
