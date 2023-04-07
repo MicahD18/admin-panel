@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 import { UserData } from 'src/app/services/user.service';
 @Component({
@@ -20,6 +20,9 @@ export class TableComponent implements OnInit {
   selected: boolean = false;
   editing: boolean = false;
 
+  currentPage: number = 1;
+  totalPages!: number;
+
   itemsPerPage: number = 5;
 
   itemNumbers: number[] = [5, 10, 25, 100];
@@ -29,20 +32,22 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.initData = this.userData;
     // Calculate the total number of pages
-    // const totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
+    this.totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
+    console.log(this.totalPages);
 
     // for (let i = 1; i <= totalPages; i++) {
     //   const startIndex = (i - 1) * this.itemsPerPage;
     //   const endIndex = startIndex + this.itemsPerPage;
-      
+
     //   const currentPageData = this.userData.slice(startIndex, endIndex);
+    //   console.log(currentPageData);
+
     // }
 
     // OnInit, show 5 items per page
     const slicedUserData = this.initData.slice(0, 5);
     console.log(slicedUserData);
     this.initData = slicedUserData;
-    
   }
 
   displayedColumns: string[] = ['name'];
@@ -92,28 +97,44 @@ export class TableComponent implements OnInit {
   editUser(index: number) {
     this.userData[index].isEditing = true;
     this.editing = true;
-    
+
     this.openBottomSheet(index);
   }
 
   openBottomSheet(index: number): void {
-    this._bottomSheet.open(BottomSheetComponent, { data: this.userData[index] });
+    this._bottomSheet.open(BottomSheetComponent, {
+      data: this.userData[index],
+    });
   }
 
   selectItemsPerPage(item: number) {
+    this.itemsPerPage = item;
+    console.log(this.itemsPerPage);
+
+    // Calculate the total number of pages
+    this.totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
+    console.log(this.totalPages);
+
     console.log(item);
     // set user data to init data
     this.initData = this.userData;
     console.log(this.initData);
+    // slice init data
     const slicedUserData = this.initData.slice(0, item);
+    // set init data to the new sliced user data array
     this.initData = slicedUserData;
   }
 
   prev() {
-
+    if (this.currentPage > 1) {
+      this.currentPage -= 1;
+    }
   }
 
   next() {
-
+    if (this.currentPage < this.totalPages) {
+      this.currentPage += 1;
+    }
+    
   }
 }

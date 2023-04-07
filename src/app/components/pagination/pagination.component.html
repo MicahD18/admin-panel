@@ -1,8 +1,8 @@
 <mat-paginator
   [length]="userData.length"
-  [pageSize]="5"
+  [pageSize]="currentPageSize"
   [pageSizeOptions]="pageSizeOptions"
   aria-label="Select page"
-  (click)="updatePaginator()"
+  (click)="updatePaginator(currentPageSize)"
 >
 </mat-paginator>

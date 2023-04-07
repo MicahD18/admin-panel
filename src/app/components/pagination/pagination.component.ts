@@ -10,11 +10,13 @@ export class PaginationComponent implements OnInit {
 
   @Input() userData: any;
 
+  currentPageSize!: number;
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.currentPageSize = 5;
     console.log(this.userData);
   }
 
@@ -22,9 +24,8 @@ export class PaginationComponent implements OnInit {
     console.log("next");
   }
 
-  updatePaginator() {
-    console.log("prev");
-    
+  updatePaginator(pageSize: number) {
+    console.log(pageSize);
   }
 
 }
