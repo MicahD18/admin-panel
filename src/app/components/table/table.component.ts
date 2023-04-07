@@ -54,17 +54,16 @@ export class TableComponent implements OnInit {
   dataSource: any = this.userData;
 
   deleteUser(index: number) {
-    this.userData?.splice(index, 1);
-    console.log(this.userData);
+    this.initData?.splice(index, 1);
   }
 
   selectAll(selected: boolean) {
     this.allSelected = selected;
 
-    if (this.userData == null) {
+    if (this.initData == null) {
       return;
     }
-    this.userData.forEach((item: any) => {
+    this.initData.forEach((item: any) => {
       // set all isSelected properties to true
       item.isSelected = selected;
     });
@@ -73,8 +72,8 @@ export class TableComponent implements OnInit {
   }
 
   selectUser() {
-    for (let i = 0; i < this.userData.length; i++) {
-      if (this.userData[i].isSelected) {
+    for (let i = 0; i < this.initData.length; i++) {
+      if (this.initData[i].isSelected) {
         this.selected = true;
         // break out of loop if isSelected property in the object is true
         break;
@@ -86,16 +85,16 @@ export class TableComponent implements OnInit {
 
   // filters items that are false
   deleteSelectedUsers() {
-    const filteredArray = this.userData.filter((item: any) => {
+    const filteredArray = this.initData.filter((item: any) => {
       return item.isSelected !== true;
     });
     // set data to the filtered array
-    this.userData = filteredArray;
+    this.initData = filteredArray;
     this.selected = false;
   }
 
   editUser(index: number) {
-    this.userData[index].isEditing = true;
+    this.initData[index].isEditing = true;
     this.editing = true;
 
     this.openBottomSheet(index);
