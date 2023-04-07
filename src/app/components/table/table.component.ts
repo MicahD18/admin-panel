@@ -32,22 +32,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.initData = this.userData;
     // Calculate the total number of pages
-    this.totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
-    console.log(this.totalPages);
-
-    // for (let i = 1; i <= totalPages; i++) {
-    //   const startIndex = (i - 1) * this.itemsPerPage;
-    //   const endIndex = startIndex + this.itemsPerPage;
-
-    //   const currentPageData = this.userData.slice(startIndex, endIndex);
-    //   console.log(currentPageData);
-
-    // }
-
-    // OnInit, show 5 items per page
-    const slicedUserData = this.initData.slice(0, 5);
-    console.log(slicedUserData);
-    this.initData = slicedUserData;
+    this.sliceData(0, 5);
   }
 
   displayedColumns: string[] = ['name'];
@@ -110,30 +95,40 @@ export class TableComponent implements OnInit {
     this.itemsPerPage = item;
     console.log(this.itemsPerPage);
 
-    // Calculate the total number of pages
-    this.totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
-    console.log(this.totalPages);
-
-    console.log(item);
-    // set user data to init data
-    this.initData = this.userData;
-    console.log(this.initData);
-    // slice init data
-    const slicedUserData = this.initData.slice(0, item);
-    // set init data to the new sliced user data array
-    this.initData = slicedUserData;
+    this.sliceData(0, item);
   }
 
   prev() {
     if (this.currentPage > 1) {
       this.currentPage -= 1;
+
+      // pass next start index and items per page
+      this.sliceData(this.initData.length + 1, this.initData.length + this.itemsPerPage);
     }
   }
 
   next() {
     if (this.currentPage < this.totalPages) {
       this.currentPage += 1;
+
+      // pass next start index and items per page
+      this.sliceData(this.initData.length + 1, this.initData.length + this.itemsPerPage);
     }
     
+  }
+
+  sliceData(startIndex: number | 0, endIndex: number | 5) {
+    console.log(startIndex, endIndex);
+    
+    // Calculate the total number of pages
+    this.totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
+    // set user data to init data
+    this.initData = this.userData;
+    // slice init data
+    const slicedUserData = this.initData.slice(startIndex | 0, endIndex | 5);
+    console.log(slicedUserData);
+    
+    // set init data to the new sliced user data array
+    this.initData = slicedUserData;
   }
 }

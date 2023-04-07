@@ -2,6 +2,7 @@
   <thead class="table-head">
     <tr>
       <mat-checkbox [checked]="allSelected" (change)="selectAll($event.checked)"></mat-checkbox>
+      <th>ID</th>
       <th>Name</th>
       <th>Email</th>
       <th>Role</th>
@@ -11,6 +12,7 @@
   <tbody class="table-body">
     <tr *ngFor="let item of initData | searchFilter: searchText; let i = index" class="table-row">
       <mat-checkbox class="table-data" [(ngModel)]="item.isSelected" (change)="selectUser()"></mat-checkbox>
+      <td class="table-data">{{ item.id }}</td>
       <td class="table-data">{{ item.name }}</td>
       <td class="table-data">{{ item.email }}</td>
       <td class="table-data">{{ item.role }}</td>
@@ -22,17 +24,20 @@
   </tbody>
 </table>
 
-<mat-form-field appearance="fill" class="role">
-  <mat-label>Items per page</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let itemNumber of itemNumbers" [value]="itemNumber" (click)="selectItemsPerPage(itemNumber)">
-      {{itemNumber}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<p>Page {{currentPage}} - {{totalPages}}</p>
-<button (click)="prev()">prev</button>
-<button (click)="next()">next</button>
+<div class="app-container-even">
+  <mat-form-field appearance="fill" class="role">
+    <mat-label>Items per page</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let itemNumber of itemNumbers" [value]="itemNumber" (click)="selectItemsPerPage(itemNumber)">
+        {{itemNumber}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>Page {{currentPage}} - {{totalPages}}</p>
+  <button (click)="prev()">prev</button>
+  <button (click)="next()">next</button>
+</div>
+
 
 <div class="app-container-even">
   <button mat-raised-button color="warn" *ngIf="selected == true" (click)="deleteSelectedUsers()">Delete Selected</button>
