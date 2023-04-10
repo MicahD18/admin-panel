@@ -27,6 +27,11 @@ export class TableComponent implements OnInit {
 
   itemNumbers: number[] = [5, 10, 25, 100];
 
+  // add 5 to endIndex when user goes to next page,
+  // and subtract 5 when user goes to previous page
+  endIndex: number = 0;
+  startIndex: number = 0;
+
   constructor(private _bottomSheet: MatBottomSheet) {}
 
   ngOnInit(): void {
@@ -103,7 +108,7 @@ export class TableComponent implements OnInit {
       this.currentPage -= 1;
 
       // pass next start index and items per page
-      this.sliceData(this.initData.length + 1, this.initData.length + this.itemsPerPage);
+      this.sliceData(this.startIndex - this.itemsPerPage, this.endIndex - this.itemsPerPage);
     }
   }
 
@@ -112,21 +117,24 @@ export class TableComponent implements OnInit {
       this.currentPage += 1;
 
       // pass next start index and items per page
-      this.sliceData(this.initData.length + 1, this.initData.length + this.itemsPerPage);
+      this.sliceData(this.startIndex + this.itemsPerPage, this.endIndex + this.itemsPerPage);
     }
     
   }
 
-  sliceData(startIndex: number | 0, endIndex: number | 5) {
+  sliceData(startIndex: number, endIndex: number) {
     console.log(startIndex, endIndex);
+    this.startIndex = startIndex;
+    this.endIndex = endIndex;
+    console.log(this.endIndex);
     
     // Calculate the total number of pages
     this.totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
-    // set user data to init data
+    // set init data to user data
     this.initData = this.userData;
+    
     // slice init data
-    const slicedUserData = this.initData.slice(startIndex | 0, endIndex | 5);
-    console.log(slicedUserData);
+    const slicedUserData = this.initData.slice(startIndex, endIndex);
     
     // set init data to the new sliced user data array
     this.initData = slicedUserData;
