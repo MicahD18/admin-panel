@@ -27,6 +27,7 @@ export class BottomSheetComponent implements OnInit {
   newRole!: string;
 
   ngOnInit(): void {
+    
     // set name and email to data passed in
     this.name = this.data?.name;
     this.email = this.data?.email;
@@ -55,7 +56,7 @@ export class BottomSheetComponent implements OnInit {
     console.log(this.name, this.email, this.newRole);
 
     this.userService.userData.push({
-      id: this.userService.userData.length + 1,
+      id: this.userService.userData.length,
       name: this.name,
       email: this.email,
       role: this.newRole,

@@ -34,14 +34,13 @@
     </mat-select>
   </mat-form-field>
   <p>Page {{currentPage}} - {{totalPages}}</p>
-  <button (click)="prev()">prev</button>
-  <button (click)="next()">next</button>
+  <button (click)="prev()" [disabled]="currentPage == 1" mat-raised-button>prev</button>
+  <button (click)="next()" [disabled]="currentPage == totalPages" mat-raised-button>next</button>
 </div>
 
 
-<div class="app-container-even">
+<div>
   <button mat-raised-button color="warn" *ngIf="selected == true" (click)="deleteSelectedUsers()">Delete Selected</button>
-  <app-pagination [userData]="userData"></app-pagination>
   <div></div>
   <div></div>
 </div>

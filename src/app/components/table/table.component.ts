@@ -10,7 +10,7 @@ import { UserData } from 'src/app/services/user.service';
 export class TableComponent implements OnInit {
   @Input() userData!: UserData[]; // all data passes in here
 
-  initData!: UserData[]; // initial data OnInit
+  @Input() initData!: UserData[]; // initial data OnInit
 
   @Input() searchText!: string;
 
@@ -45,6 +45,9 @@ export class TableComponent implements OnInit {
 
   deleteUser(index: number) {
     this.initData?.splice(index, 1);
+    console.log(this.initData);
+    console.log(this.userData);
+    
   }
 
   selectAll(selected: boolean) {
@@ -92,13 +95,14 @@ export class TableComponent implements OnInit {
 
   openBottomSheet(index: number): void {
     this._bottomSheet.open(BottomSheetComponent, {
-      data: this.userData[index],
+      data: this.initData[index],
     });
   }
 
   selectItemsPerPage(item: number) {
     this.itemsPerPage = item;
-    console.log(this.itemsPerPage);
+
+    this.currentPage = 1;
 
     this.sliceData(0, item);
   }
@@ -123,10 +127,8 @@ export class TableComponent implements OnInit {
   }
 
   sliceData(startIndex: number, endIndex: number) {
-    console.log(startIndex, endIndex);
     this.startIndex = startIndex;
     this.endIndex = endIndex;
-    console.log(this.endIndex);
     
     // Calculate the total number of pages
     this.totalPages = Math.ceil(this.userData.length / this.itemsPerPage);

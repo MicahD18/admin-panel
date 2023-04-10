@@ -18,7 +18,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './components/table/table.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
 
@@ -28,7 +27,6 @@ import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.com
     SearchBarComponent,
     ListItemComponent,
     TableComponent,
-    PaginationComponent,
     FilterPipe,
     BottomSheetComponent
   ],
