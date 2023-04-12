@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
-import { UserData } from 'src/app/services/user.service';
+import { UserData, UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -11,6 +11,10 @@ export class TableComponent implements OnInit {
   @Input() userData!: UserData[]; // all data passes in here
 
   @Input() initData!: UserData[]; // initial data OnInit
+
+  @Input() allData: UserData[] = [];
+
+  @Input() newData: UserData[] = [];
 
   @Input() searchText!: string;
 
@@ -32,22 +36,33 @@ export class TableComponent implements OnInit {
   endIndex: number = 0;
   startIndex: number = 0;
 
-  constructor(private _bottomSheet: MatBottomSheet) {}
+  constructor(
+    private _bottomSheet: MatBottomSheet,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.initData = this.userData;
-    // Calculate the total number of pages
-    this.sliceData(0, 5);
+    this.userService.getUsers().subscribe((data: any) => {
+      this.allData = data.map((item: any) => ({
+        ...item,
+        isSelected: false,
+        isEditing: false,
+      }));
+
+      this.initData = this.allData;
+      
+      // Calculate the total number of pages
+      this.sliceData(0, 5);
+    });
   }
 
   displayedColumns: string[] = ['name'];
-  dataSource: any = this.userData;
+  dataSource: any = this.allData;
 
   deleteUser(index: number) {
     this.initData?.splice(index, 1);
     console.log(this.initData);
     console.log(this.userData);
-    
   }
 
   selectAll(selected: boolean) {
@@ -94,8 +109,10 @@ export class TableComponent implements OnInit {
   }
 
   openBottomSheet(index: number): void {
+    console.log(this.allData);
+    console.log("Hello World")
     this._bottomSheet.open(BottomSheetComponent, {
-      data: this.initData[index],
+      data: { user: this.allData[index], allData: this.allData, createUser: false },
     });
   }
 
@@ -112,7 +129,10 @@ export class TableComponent implements OnInit {
       this.currentPage -= 1;
 
       // pass next start index and items per page
-      this.sliceData(this.startIndex - this.itemsPerPage, this.endIndex - this.itemsPerPage);
+      this.sliceData(
+        this.startIndex - this.itemsPerPage,
+        this.endIndex - this.itemsPerPage
+      );
     }
   }
 
@@ -121,24 +141,30 @@ export class TableComponent implements OnInit {
       this.currentPage += 1;
 
       // pass next start index and items per page
-      this.sliceData(this.startIndex + this.itemsPerPage, this.endIndex + this.itemsPerPage);
+      this.sliceData(
+        this.startIndex + this.itemsPerPage,
+        this.endIndex + this.itemsPerPage
+      );
     }
-    
   }
 
   sliceData(startIndex: number, endIndex: number) {
     this.startIndex = startIndex;
     this.endIndex = endIndex;
-    
+
     // Calculate the total number of pages
-    this.totalPages = Math.ceil(this.userData.length / this.itemsPerPage);
+    this.totalPages = Math.ceil(this.allData.length / this.itemsPerPage);
     // set init data to user data
-    this.initData = this.userData;
-    
+    this.initData = this.allData;
+
     // slice init data
     const slicedUserData = this.initData.slice(startIndex, endIndex);
-    
+
     // set init data to the new sliced user data array
     this.initData = slicedUserData;
+  }
+
+  test() {
+    console.log(this.allData);
   }
 }

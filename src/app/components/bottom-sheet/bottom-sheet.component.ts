@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 import {
   MAT_BOTTOM_SHEET_DATA,
   MatBottomSheetRef,
@@ -23,20 +24,22 @@ export class BottomSheetComponent implements OnInit {
 
   name!: string;
   email!: string;
-  roles: string[] = ['Member', 'Admin'];
+  roles: string[] = ['member', 'admin'];
   newRole!: string;
 
   ngOnInit(): void {
-    
+    console.log(this.data);
+
     // set name and email to data passed in
-    this.name = this.data?.name;
-    this.email = this.data?.email;
-    this.newRole = this.data?.role;
+    this.name = this.data?.user.name;
+    this.email = this.data?.user.email;
+    this.newRole = this.data?.user.role;
 
     // if no data, then return to silence errors
-    if (this.data == null) {
-      return;
-    }
+    // if (this.data.allData == null) {
+    //   console.log("data is null...");
+    //   return;
+    // }
   }
 
   selectRole(role: string) {
@@ -45,9 +48,9 @@ export class BottomSheetComponent implements OnInit {
   }
 
   updateUser() {
-    this.data.name = this.name;
-    this.data.email = this.email;
-    this.data.role = this.newRole;
+    this.data.user.name = this.name;
+    this.data.user.email = this.email;
+    this.data.user.role = this.newRole;
 
     this._bottomSheetRef.dismiss();
   }
@@ -55,14 +58,20 @@ export class BottomSheetComponent implements OnInit {
   createUser() {
     console.log(this.name, this.email, this.newRole);
 
-    this.userService.userData.push({
-      id: this.userService.userData.length,
+    let id = this.data.allData.length + 1;
+    let newId = id.toString();
+
+    this.data.allData.push({
+      id: newId,
       name: this.name,
       email: this.email,
       role: this.newRole,
       isSelected: false,
       isEditing: false,
     });
+
+    console.log(this.data.allData);
+    
 
     this._bottomSheetRef.dismiss();
   }

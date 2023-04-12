@@ -5,11 +5,19 @@
     class="searchbar"
     [(ngModel)]="searchText"
   />
-  <button mat-raised-button (click)="openBottomSheet()" color="accent" id="create-btn">Create User</button>
+  <button
+    mat-raised-button
+    (click)="openBottomSheet()"
+    color="accent"
+    id="create-btn"
+  >
+    Create User
+  </button>
 </div>
 
 <div class="app-container-center">
   <app-table
+    [allData]="allData"
     [userData]="userService.userData"
     [searchText]="searchText"
   ></app-table>

@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 export interface UserData {
   id: number;
@@ -44,7 +47,12 @@ export class UserService {
     {id: 25, name: 'Bryce TerHaar', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  apiEndpoint = "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json";
 
   // TODO: Send HTTP request to API endpoint
+  getUsers() {
+    return this.http.get<UserData>(this.apiEndpoint);
+  }
 }

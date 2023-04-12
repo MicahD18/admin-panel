@@ -1,4 +1,4 @@
-<form class="user-form" *ngIf="data != null">
+<form class="user-form" *ngIf="data.createUser == false">
     <mat-form-field class="example-full-width">
       <mat-label>Enter name</mat-label>
       <input matInput value="{{data.name}}" [(ngModel)]="name" name="name">
@@ -23,7 +23,7 @@
       </div>
   </form>
 
-  <form *ngIf="data == null" class="user-form">
+  <form *ngIf="data.createUser == true" class="user-form">
     <mat-form-field class="example-full-width">
         <mat-label>Enter name</mat-label>
         <input matInput [(ngModel)]="name" name="name">
