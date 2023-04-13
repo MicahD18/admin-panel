@@ -56,17 +56,6 @@ export class UserService {
   apiEndpoint = "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json";
 
   getUsers() {
-    // await this.http.get<any>(this.apiEndpoint).subscribe((data:any) => {
-    //   this.newData = data.map((item: any) => ({
-    //     ...item,
-    //     isSelected: false,
-    //     isEditing: false,
-    //   }));
-    //   console.log(this.newData);
-    //   return this.newData;
-      
-    // })
-
     return this.http.get<any>(this.apiEndpoint).subscribe((data: any) => {
         this.newData = data.map((item: any) => ({
           ...item,

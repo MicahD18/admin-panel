@@ -27,18 +27,10 @@ export class BottomSheetComponent implements OnInit {
   newRole!: string;
 
   ngOnInit(): void {
-    console.log(this.data);
-
     // set name and email to data passed in
     this.name = this.data?.user.name;
     this.email = this.data?.user.email;
     this.newRole = this.data?.user.role;
-
-    // if no data, then return to silence errors
-    // if (this.data.allData == null) {
-    //   console.log("data is null...");
-    //   return;
-    // }
   }
 
   selectRole(role: string) {
@@ -55,7 +47,6 @@ export class BottomSheetComponent implements OnInit {
   }
 
   createUser(newData: any) {
-    console.log(this.name, this.email, this.newRole);
 
     let id = newData.length + 1;
     let newId = id.toString();
@@ -68,8 +59,6 @@ export class BottomSheetComponent implements OnInit {
       isSelected: false,
       isEditing: false,
     });
-
-    console.log(newData);
 
     this.userService.setNewData(newData);
 

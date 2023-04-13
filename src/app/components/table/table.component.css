@@ -21,6 +21,17 @@
     filter: brightness(0) saturate(100%) invert(71%) sepia(2%) saturate(0%) hue-rotate(27deg) brightness(90%) contrast(84%);
 }
 
+.loading-container {
+    margin-top: 25px;
+    flex-direction: column;
+    height: 25vh;
+    justify-content: space-around;
+}
+
+.loading-container p {
+    font-size: 20px;
+}
+
 #delete {
     filter: brightness(0) saturate(100%) invert(61%) sepia(29%) saturate(5955%) hue-rotate(324deg) brightness(95%) contrast(112%);
 }

@@ -20,13 +20,6 @@ export class SearchBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.userService.getUsers().subscribe((data: any) => {
-    //   this.allData = data.map((item: any) => ({
-    //     ...item,
-    //     isSelected: false,
-    //     isEditing: false,
-    //   }));
-    // });
     this.userService.getUsers();
 
     setTimeout(() => {
@@ -35,8 +28,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   openBottomSheet(): void {
-    console.log(this.allData);
-
     this._bottomSheet.open(BottomSheetComponent, {
       data: {
         user: { name: '', email: '', role: 'member' },

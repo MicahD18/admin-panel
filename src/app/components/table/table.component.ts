@@ -13,10 +13,10 @@ import { UserData, UserService } from 'src/app/services/user.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent implements OnInit, OnChanges {
+export class TableComponent implements OnInit {
   @Input() userData!: UserData[]; // all data passes in here
 
-  @Input() initData!: UserData[]; // initial data OnInit
+  @Input() initData: UserData[] = []; // initial data OnInit
 
   @Input() allData: UserData[] = [];
 
@@ -48,21 +48,6 @@ export class TableComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    // this.userService.getUsers().subscribe((data: any) => {
-    //   this.allData = data.map((item: any) => ({
-    //     ...item,
-    //     isSelected: false,
-    //     isEditing: false,
-    //   }));
-    // console.log(this.allData);
-
-    // this.initData = this.allData;
-
-    // // Calculate the total number of pages
-    // this.sliceData(0, 5);
-
-    // });
-
     this.userService.getUsers();
 
     setTimeout(() => {
@@ -75,15 +60,11 @@ export class TableComponent implements OnInit, OnChanges {
     }, 1000);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {}
-
   displayedColumns: string[] = ['name'];
   dataSource: any = this.allData;
 
   deleteUser(index: number) {
     this.initData?.splice(index, 1);
-    console.log(this.initData);
-    console.log(this.userData);
   }
 
   selectAll(selected: boolean) {
@@ -130,8 +111,6 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   openBottomSheet(index: number): void {
-    console.log(this.allData);
-    console.log('Hello World');
     this._bottomSheet.open(BottomSheetComponent, {
       data: {
         user: this.allData[index],

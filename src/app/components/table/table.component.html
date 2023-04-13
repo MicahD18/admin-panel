@@ -21,8 +21,15 @@
         <button (click)="deleteUser(i)"><img src="../../../assets/delete-icon.svg" alt="delete" class="icon" id="delete"></button>
       </td>
     </tr>
+
+    
   </tbody>
 </table>
+
+<div *ngIf="initData.length == 0" class="app-container-center loading-container">
+  <p>Loading...</p>
+  <mat-spinner></mat-spinner>
+</div>
 
 <div class="app-container-even">
   <mat-form-field appearance="fill" class="role">
