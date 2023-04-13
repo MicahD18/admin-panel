@@ -59,7 +59,7 @@ export class BottomSheetComponent implements OnInit {
       role: this.newRole,
       isSelected: false,
       isEditing: false,
-      isDeleted: false
+      isDeleted: false,
     });
 
     this.userService.setNewData(newData);
@@ -69,5 +69,9 @@ export class BottomSheetComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
+
+    setTimeout(() => {
+      this._snackBar.dismiss();
+    }, 3000);
   }
 }
