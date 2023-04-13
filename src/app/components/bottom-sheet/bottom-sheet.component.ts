@@ -1,12 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
 import {
   MAT_BOTTOM_SHEET_DATA,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import { TableComponent } from '../table/table.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { UserService } from 'src/app/services/user.service';
+import { UserData, UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
@@ -55,13 +54,13 @@ export class BottomSheetComponent implements OnInit {
     this._bottomSheetRef.dismiss();
   }
 
-  createUser() {
+  createUser(newData: any) {
     console.log(this.name, this.email, this.newRole);
 
-    let id = this.data.allData.length + 1;
+    let id = newData.length + 1;
     let newId = id.toString();
 
-    this.data.allData.push({
+    newData.push({
       id: newId,
       name: this.name,
       email: this.email,
@@ -70,8 +69,9 @@ export class BottomSheetComponent implements OnInit {
       isEditing: false,
     });
 
-    console.log(this.data.allData);
-    
+    console.log(newData);
+
+    this.userService.setNewData(newData);
 
     this._bottomSheetRef.dismiss();
   }

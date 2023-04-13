@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 import { UserData, UserService } from 'src/app/services/user.service';
@@ -7,7 +13,7 @@ import { UserData, UserService } from 'src/app/services/user.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges {
   @Input() userData!: UserData[]; // all data passes in here
 
   @Input() initData!: UserData[]; // initial data OnInit
@@ -38,23 +44,38 @@ export class TableComponent implements OnInit {
 
   constructor(
     private _bottomSheet: MatBottomSheet,
-    private userService: UserService
+    public userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((data: any) => {
-      this.allData = data.map((item: any) => ({
-        ...item,
-        isSelected: false,
-        isEditing: false,
-      }));
+    // this.userService.getUsers().subscribe((data: any) => {
+    //   this.allData = data.map((item: any) => ({
+    //     ...item,
+    //     isSelected: false,
+    //     isEditing: false,
+    //   }));
+    // console.log(this.allData);
+
+    // this.initData = this.allData;
+
+    // // Calculate the total number of pages
+    // this.sliceData(0, 5);
+
+    // });
+
+    this.userService.getUsers();
+
+    setTimeout(() => {
+      this.allData = this.userService.newData;
 
       this.initData = this.allData;
-      
+
       // Calculate the total number of pages
       this.sliceData(0, 5);
-    });
+    }, 1000);
   }
+
+  ngOnChanges(changes: SimpleChanges): void {}
 
   displayedColumns: string[] = ['name'];
   dataSource: any = this.allData;
@@ -110,9 +131,13 @@ export class TableComponent implements OnInit {
 
   openBottomSheet(index: number): void {
     console.log(this.allData);
-    console.log("Hello World")
+    console.log('Hello World');
     this._bottomSheet.open(BottomSheetComponent, {
-      data: { user: this.allData[index], allData: this.allData, createUser: false },
+      data: {
+        user: this.allData[index],
+        allData: this.allData,
+        createUser: false,
+      },
     });
   }
 
@@ -162,9 +187,5 @@ export class TableComponent implements OnInit {
 
     // set init data to the new sliced user data array
     this.initData = slicedUserData;
-  }
-
-  test() {
-    console.log(this.allData);
   }
 }

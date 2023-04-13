@@ -14,25 +14,29 @@ export class SearchBarComponent implements OnInit {
 
   newData: any[] = []; // after creating user, send new data back to table component
 
-  // TODO: Add API Service here
   constructor(
     public userService: UserService,
     private _bottomSheet: MatBottomSheet
   ) {}
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((data: any) => {
-      this.allData = data.map((item: any) => ({
-        ...item,
-        isSelected: false,
-        isEditing: false,
-      }));
-    });
+    // this.userService.getUsers().subscribe((data: any) => {
+    //   this.allData = data.map((item: any) => ({
+    //     ...item,
+    //     isSelected: false,
+    //     isEditing: false,
+    //   }));
+    // });
+    this.userService.getUsers();
+
+    setTimeout(() => {
+      this.allData = this.userService.newData;
+    }, 1000);
   }
 
   openBottomSheet(): void {
     console.log(this.allData);
-    
+
     this._bottomSheet.open(BottomSheetComponent, {
       data: {
         user: { name: '', email: '', role: 'member' },

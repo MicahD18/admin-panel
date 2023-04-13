@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, tap } from 'rxjs/operators';
 
 export interface UserData {
   id: number;
@@ -47,12 +47,36 @@ export class UserService {
     {id: 25, name: 'Bryce TerHaar', email: "sample@gmail.com", role: 'Admin', isSelected: false, isEditing: false},
   ];
 
+  createdUser: boolean = false;
+
+  newData: any[] = [];
+
   constructor(private http: HttpClient) { }
 
   apiEndpoint = "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json";
 
-  // TODO: Send HTTP request to API endpoint
   getUsers() {
-    return this.http.get<UserData>(this.apiEndpoint);
+    // await this.http.get<any>(this.apiEndpoint).subscribe((data:any) => {
+    //   this.newData = data.map((item: any) => ({
+    //     ...item,
+    //     isSelected: false,
+    //     isEditing: false,
+    //   }));
+    //   console.log(this.newData);
+    //   return this.newData;
+      
+    // })
+
+    return this.http.get<any>(this.apiEndpoint).subscribe((data: any) => {
+        this.newData = data.map((item: any) => ({
+          ...item,
+          isSelected: false,
+          isEditing: false,
+        }));
+      });
+  }
+
+  setNewData(newData: any) {
+    this.newData = newData;
   }
 }
