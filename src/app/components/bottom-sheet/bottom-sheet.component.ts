@@ -6,6 +6,7 @@ import {
 import { TableComponent } from '../table/table.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { UserData, UserService } from 'src/app/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
@@ -18,7 +19,8 @@ export class BottomSheetComponent implements OnInit {
       SearchBarComponent
     >,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
-    private userService: UserService
+    private userService: UserService,
+    private _snackBar: MatSnackBar
   ) {}
 
   name!: string;
@@ -47,7 +49,6 @@ export class BottomSheetComponent implements OnInit {
   }
 
   createUser(newData: any) {
-
     let id = newData.length + 1;
     let newId = id.toString();
 
@@ -58,10 +59,15 @@ export class BottomSheetComponent implements OnInit {
       role: this.newRole,
       isSelected: false,
       isEditing: false,
+      isDeleted: false
     });
 
     this.userService.setNewData(newData);
 
     this._bottomSheetRef.dismiss();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 }

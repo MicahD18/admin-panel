@@ -15,7 +15,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  @Input() initData: UserData[] = []; // initial data OnInit
+  @Input() initData!: UserData[]; // initial data OnInit
 
   @Input() allData: UserData[] = []; // all data passes here
 
@@ -136,7 +136,7 @@ export class TableComponent implements OnInit {
       data: {
         user: this.allData[index],
         allData: this.allData,
-        createUser: false,
+        createUser: false, // property that checks what to render on bottom-sheet component
       },
     });
   }
