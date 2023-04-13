@@ -8,17 +8,16 @@ import {
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 import { UserData, UserService } from 'src/app/services/user.service';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  @Input() userData!: UserData[]; // all data passes in here
-
   @Input() initData: UserData[] = []; // initial data OnInit
 
-  @Input() allData: UserData[] = [];
+  @Input() allData: UserData[] = []; // all data passes here
 
   @Input() newData: UserData[] = [];
 
@@ -57,14 +56,28 @@ export class TableComponent implements OnInit {
 
       // Calculate the total number of pages
       this.sliceData(0, 5);
-    }, 1000);
+    }, 500);
   }
 
-  displayedColumns: string[] = ['name'];
-  dataSource: any = this.allData;
-
-  deleteUser(index: number) {
+  deleteUser(index: number, name: string) {
+    // remove item based on index for init data
     this.initData?.splice(index, 1);
+
+    // if the item in allData == name passed in,
+    // set the item's isDeleted property to true
+    this.allData.forEach((item: any) => {
+      if (item.name == name) {
+        item.isDeleted = true;
+      }
+    });
+
+    // filter the items that are false
+    const filteredData = this.allData.filter((item: any) => {
+      return item.isDeleted == false;
+    });
+
+    // set the filteredData to allData
+    this.allData = filteredData;
   }
 
   selectAll(selected: boolean) {
@@ -95,12 +108,20 @@ export class TableComponent implements OnInit {
 
   // filters items that are false
   deleteSelectedUsers() {
-    const filteredArray = this.initData.filter((item: any) => {
+    // filter init data
+    const filterInitData = this.initData.filter((item: any) => {
       return item.isSelected !== true;
     });
     // set data to the filtered array
-    this.initData = filteredArray;
+    this.initData = filterInitData;
     this.selected = false;
+
+    // filter all data
+    const filterAllData = this.allData.filter((item: any) => {
+      return item.isSelected !== true;
+    });
+
+    this.allData = filterAllData;
   }
 
   editUser(index: number) {

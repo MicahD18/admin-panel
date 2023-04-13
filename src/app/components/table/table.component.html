@@ -18,7 +18,7 @@
       <td class="table-data">{{ item.role }}</td>
       <td class="table-data">
         <button (click)="editUser(i)"><img src="../../../assets/edit-icon.svg" alt="edit" class="icon"></button>
-        <button (click)="deleteUser(i)"><img src="../../../assets/delete-icon.svg" alt="delete" class="icon" id="delete"></button>
+        <button (click)="deleteUser(i, item.name)"><img src="../../../assets/delete-icon.svg" alt="delete" class="icon" id="delete"></button>
       </td>
     </tr>
 
