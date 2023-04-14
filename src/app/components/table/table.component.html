@@ -10,7 +10,7 @@
   </thead>
   <tbody class="table-body">
     <tr *ngFor="let item of initData | searchFilter: searchText; let i = index" class="table-row">
-      <mat-checkbox class="table-data" [(ngModel)]="item.isSelected" (change)="selectUser()"></mat-checkbox>
+      <td><mat-checkbox class="table-data" [(ngModel)]="item.isSelected" (change)="selectUser()"></mat-checkbox></td>
       <td class="table-data">{{ item.name }}</td>
       <td class="table-data">{{ item.email }}</td>
       <td class="table-data">{{ item.role }}</td>
