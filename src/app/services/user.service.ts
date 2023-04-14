@@ -27,8 +27,13 @@ export class UserService {
 
   getUsers() {
     return this.http.get<any>(this.apiEndpoint).subscribe((data: any) => {
-        this.newData = data.map((item: any) => ({
-          ...item,
+        data.forEach((user:any) => {
+          const role = user.role.charAt(0).toUpperCase() + user.role.substr(1).toLowerCase()
+          user.role = role;
+        });
+        
+        this.newData = data.map((user: any) => ({
+          ...user,
           isSelected: false,
           isEditing: false,
           isDeleted: false
