@@ -19,8 +19,6 @@
         <button (click)="deleteUser(i, item.name)"><img src="../../../assets/delete-icon.svg" alt="delete" class="icon" id="delete"></button>
       </td>
     </tr>
-
-    
   </tbody>
 </table>
 
@@ -42,7 +40,6 @@
   <button (click)="prev()" [disabled]="currentPage == 1" mat-raised-button>prev</button>
   <button (click)="next()" [disabled]="currentPage == totalPages" mat-raised-button>next</button>
 </div>
-
 
 <div>
   <button mat-raised-button color="warn" *ngIf="selected == true" (click)="deleteSelectedUsers()">Delete Selected</button>

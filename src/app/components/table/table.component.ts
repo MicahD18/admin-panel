@@ -55,7 +55,7 @@ export class TableComponent implements OnInit {
       this.initData = this.allData;
 
       // Calculate the total number of pages
-      this.sliceData(0, 5);
+      this.sliceData(0, 10);
     }, 500);
   }
 

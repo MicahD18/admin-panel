@@ -19,7 +19,7 @@
       </mat-form-field>
 
       <div class="save-btn-container">
-        <button mat-raised-button (click)="updateUser()" class="save-btn" color="accent">Save</button>
+        <button mat-raised-button (click)="updateUser(); openSnackBar('Successfully updated user', 'OK')" class="save-btn" color="accent">Save</button>
       </div>
   </form>
 
